@@ -7,6 +7,7 @@ Created on Wed Oct  5 01:00:25 2022
 
 
 import keyboard
+import sys
 
 anum = 0
 cnum = 0
@@ -14,36 +15,47 @@ enum = 0
 inum = 0
 onum = 0
 unum = 0
+stopped = False
 
-while True:
+def a():
+    global anum
+    if keyboard.is_pressed("`+a"):
+        keyboard.write('\b')
+        keyboard.write('\b')
     
-    if keyboard.is_pressed("alt+a"):
         if anum == 0:
             keyboard.write("à")
             anum = 1
         elif anum == 1:
-
+    
             keyboard.write("â")
             anum = 2
         elif anum == 2:
-
+    
             keyboard.write("æ")
             anum = 0    
             
-            
-            
-    if keyboard.is_pressed("alt+c"):
+def c():
+
+    if keyboard.is_pressed("`+c"):
+        keyboard.write('\b')
+        keyboard.write('\b')
         keyboard.write("ç")
         
         
-        
-    if keyboard.is_pressed("alt+y"):
+def y():  
+    
+    if keyboard.is_pressed("`+y"):
+        keyboard.write('\b')
+        keyboard.write('\b')
         keyboard.write("ÿ")   
         
         
-        
-    if keyboard.is_pressed("alt+e"):
-
+def e():
+    global enum
+    if keyboard.is_pressed("`+e"):
+        keyboard.write('\b')
+        keyboard.write('\b')
         if enum == 0:
             keyboard.write("é")
             enum = 1
@@ -57,10 +69,12 @@ while True:
             keyboard.write("ë")
             enum = 0
             
-            
-            
-    if keyboard.is_pressed("alt+i"):
-
+def i():
+   
+    global inum
+    if keyboard.is_pressed("`+i"):
+        keyboard.write('\b')
+        keyboard.write('\b')
         if inum == 0:
             keyboard.write("ï")
             inum = 1
@@ -68,9 +82,12 @@ while True:
             keyboard.write("î")
             inum = 0
             
-            
-            
-    if keyboard.is_pressed("alt+o"):
+def o():
+  
+    global onum
+    if keyboard.is_pressed("`+o"):
+        keyboard.write('\b')
+        keyboard.write('\b')
         if onum == 0:
             keyboard.write("ô")
             onum = 1
@@ -79,17 +96,39 @@ while True:
             onum = 0
        
        
-       
-    if keyboard.is_pressed("alt+u"):
-
+def u():
+    global unum
+    if keyboard.is_pressed("`+u"):
+        keyboard.write('\b')
+        keyboard.write('\b')
         if unum == 0:
             keyboard.write("ù")
             unum = 1
         elif unum == 1:
-
+    
             keyboard.write("û")
             unum = 2
         elif unum == 2:
-
+    
             keyboard.write("ü")
             unum = 0    
+            
+def quitKeyboard():
+    global stopped
+    keyboard.write('\b')
+    keyboard.write('\b')
+    stopped = True
+            #####
+keyboard.add_hotkey('`+a', a)
+keyboard.add_hotkey('`+e', e)
+keyboard.add_hotkey('`+i', i)
+keyboard.add_hotkey('`+o', o)
+keyboard.add_hotkey('`+u', u)
+keyboard.add_hotkey('`+c', c)
+keyboard.add_hotkey('`+y', y)
+
+keyboard.add_hotkey('`+q', quitKeyboard)
+
+while True:
+    if stopped == True:
+        sys.exit("French Keyboard disabled")
