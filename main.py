@@ -34,6 +34,7 @@ def a():
     
             keyboard.write("æ")
             anum = 0    
+        #keyboard.write('\b')
             
 def c():
 
@@ -128,6 +129,8 @@ keyboard.add_hotkey('`+c', c)
 keyboard.add_hotkey('`+y', y)
 
 keyboard.add_hotkey('`+q', quitKeyboard)
+
+keyboard.wait()
 
 while True:
     if stopped == True:
